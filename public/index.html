@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Hall Pass</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Digital Hall Pass</h1>
+    <form id="hallpass-form">
+        <label for="student-name">Name:</label>
+        <input type="text" id="student-name" required>
+        
+        <label for="destination">Destination:</label>
+        <select id="destination" required>
+            <option value="restroom">Restroom</option>
+            <option value="office">Office</option>
+            <option value="nurse">Nurse</option>
+        </select>
+
+        <button type="submit">Request Pass</button>
+    </form>
+
+    <script src="script.js"></script>
+</body>
+</html>
