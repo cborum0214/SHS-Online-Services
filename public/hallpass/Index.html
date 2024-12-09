@@ -9,48 +9,55 @@
 <body>
     <div class="container">
         <h1>Hall Pass Tracker</h1>
-        <form id="hallPassForm">
-            <label for="firstName">First Name:</label>
-            <input type="text" id="firstName" name="firstName" required>
-            
-            <label for="lastName">Last Name:</label>
-            <input type="text" id="lastName" name="lastName" required>
-            
-            <label for="location">Location:</label>
-            <select id="location" name="location" required>
-                <option value="">Select Location</option>
-                <option value="Bathroom">Bathroom</option>
-                <option value="Nurse">Nurse</option>
-                <option value="Office">Office</option>
-                <option value="Library">Library</option>
-            </select>
-            
-            <label for="status">Status:</label>
-            <select id="status" name="status" required>
-                <option value="">Select Status</option>
-                <option value="Leaving">Leaving</option>
-                <option value="Returning">Returning</option>
-            </select>
-            
-            <button type="submit">Submit</button>
-        </form>
-        <hr>
-        <h2>Transaction Log</h2>
-        <table id="logTable">
-            <thead>
-                <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Location</th>
-                    <th>Status</th>
-                    <th>Timestamp</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Log entries will appear here -->
-            </tbody>
-        </table>
+        <div class="button-group">
+            <button id="entryButton">Enter Hall Pass</button>
+            <button id="adminButton">Admin Panel</button>
+        </div>
+        <div id="passwordPrompt" class="hidden">
+            <label for="adminPassword">Enter Admin Password:</label>
+            <input type="password" id="adminPassword">
+            <button id="submitPassword">Submit</button>
+            <button id="cancelPassword">Cancel</button>
+        </div>
     </div>
-    <script src="script.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const entryButton = document.getElementById("entryButton");
+            const adminButton = document.getElementById("adminButton");
+            const passwordPrompt = document.getElementById("passwordPrompt");
+            const adminPasswordInput = document.getElementById("adminPassword");
+            const submitPassword = document.getElementById("submitPassword");
+            const cancelPassword = document.getElementById("cancelPassword");
+
+            // Navigate to Entry Page
+            entryButton.addEventListener("click", () => {
+                window.location.href = "entry.html";
+            });
+
+            // Show Password Prompt
+            adminButton.addEventListener("click", () => {
+                passwordPrompt.classList.remove("hidden");
+            });
+
+            // Submit Password
+            submitPassword.addEventListener("click", () => {
+                const password = adminPasswordInput.value;
+                const correctPassword = "admin123"; // Replace with a secure method for production
+
+                if (password === correctPassword) {
+                    window.location.href = "admin.html";
+                } else {
+                    alert("Incorrect password. Please try again.");
+                }
+            });
+
+            // Cancel Password Prompt
+            cancelPassword.addEventListener("click", () => {
+                passwordPrompt.classList.add("hidden");
+                adminPasswordInput.value = "";
+            });
+        });
+    </script>
 </body>
 </html>
